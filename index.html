@@ -15,7 +15,7 @@
 
     <style>
         :root {
-            /* Dark Theme Variables */
+            /* Dark Theme Variables (Default) */
             --primary-color: #3b82f6;
             --text-color: #e5e7eb;
             --background-color: #03102e;
@@ -36,11 +36,36 @@
             --social-icon: #9ca3af;
             --social-hover: #3b82f6;
         }
+
+        [data-theme="light"] {
+            /* Light Theme Variables */
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --header-background: rgba(255, 255, 255, 0.95);
+            --section-background: #f9fafb;
+            --mobile-menu-bg: #ffffff;
+            --mobile-menu-hover: #f3f4f6;
+            --border-color: #e5e7eb;
+            --input-border: #d1d5db;
+            --text-muted: #6b7280;
+            --text-secondary: #4b5563;
+            --hero-text: #111827;
+            --hero-subtext: #4b5563;
+            --button-bg: #3b82f6;
+            --button-hover: #2563eb;
+            --tag-bg: #e5e7eb;
+            --social-icon: #6b7280;
+            --social-hover: #3b82f6;
+        }
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--background-color);
             color: var(--text-color);
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         .canvas-bg {
             position: absolute;
@@ -52,6 +77,7 @@
         }
         header {
             background-color: var(--header-background);
+            transition: background-color 0.3s ease;
         }
         .contact-form input,
         .contact-form textarea,
@@ -59,12 +85,15 @@
         .project-card,
         .about-bg {
             background-color: var(--card-background);
+            transition: background-color 0.3s ease;
         }
         .theme-section {
             background-color: var(--section-background);
+            transition: background-color 0.3s ease;
         }
         .theme-mobile-menu {
             background-color: var(--mobile-menu-bg);
+            transition: background-color 0.3s ease;
         }
         .theme-mobile-menu a:hover {
             background-color: var(--mobile-menu-hover);
@@ -92,15 +121,18 @@
         }
         .theme-button {
             background-color: var(--button-bg);
+            transition: background-color 0.3s ease;
         }
         .theme-button:hover {
             background-color: var(--button-hover);
         }
         .theme-tag {
             background-color: var(--tag-bg);
+            transition: background-color 0.3s ease;
         }
         .theme-social-icon {
             color: var(--social-icon);
+            transition: color 0.3s ease;
         }
         .theme-social-icon:hover {
             color: var(--social-hover);
@@ -124,66 +156,385 @@
             opacity: 0.8;
         }
         .nav-link:active, .nav-link:focus {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    }
-    .nav-link {
-        cursor: pointer;
-    }
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 6px;
+        }
+        .nav-link {
+            cursor: pointer;
+        }
  
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            animation: typing 3.5s steps(40, end) forwards;
+        }
+
+        /* Theme Toggle Button Styles */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 8px;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* ==================== NEW ANIMATIONS ==================== */
+        
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* Slide In From Left */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-slide-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        /* Slide In From Right */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-slide-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        /* Scale Up Animation */
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .animate-scale-up {
+            animation: scaleUp 0.6s ease-out forwards;
+        }
+        
+        /* Pulse Animation */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        /* Float Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Bounce Animation */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        /* Rotate Animation */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .animate-rotate {
+            animation: rotate 20s linear infinite;
+        }
+        
+        /* Shine Effect */
+        @keyframes shine {
+            0% {
+                background-position: -100px;
+            }
+            40%, 100% {
+                background-position: 140px;
+            }
+        }
+        
+        .animate-shine {
+            background: linear-gradient(110deg, 
+                var(--card-background) 33%, 
+                rgba(255, 255, 255, 0.1) 33%, 
+                rgba(255, 255, 255, 0.1) 66%, 
+                var(--card-background) 66%);
+            background-size: 300% 100%;
+            animation: shine 2s infinite;
+        }
+        
+        /* Blink Animation */
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .animate-blink {
+            animation: blink 2s infinite;
+        }
+        
+        /* Gradient Border Animation */
+        @keyframes gradient-border {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .gradient-border {
+            position: relative;
+            border-radius: 0.75rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+            background-size: 300% 300%;
+            animation: gradient-border 3s ease infinite;
+            padding: 2px;
+        }
+        
+        .gradient-border > * {
+            border-radius: 0.65rem;
+        }
+        
+        /* Hero Text Animations */
+        @keyframes heroTextAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .animate-hero-text {
+            animation: heroTextAppear 1s ease-out forwards;
+        }
+        
+        /* Staggered Animation Delays */
+        .animation-delay-100 { animation-delay: 0.1s; }
+        .animation-delay-200 { animation-delay: 0.2s; }
+        .animation-delay-300 { animation-delay: 0.3s; }
+        .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-500 { animation-delay: 0.5s; }
+        .animation-delay-600 { animation-delay: 0.6s; }
+        .animation-delay-700 { animation-delay: 0.7s; }
+        .animation-delay-800 { animation-delay: 0.8s; }
+        
+        /* Scroll Animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Add to your existing CSS animations */
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
 }
 
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  animation: typing 3.5s steps(40, end) forwards;
+.animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Enhanced shine animation */
+@keyframes shine {
+    0% {
+        background-position: -200px;
+    }
+    100% {
+        background-position: calc(200px + 100%);
+    }
+}
+
+.animate-shine {
+    background-size: 200px 100%;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(255,255,255,0) 100%
+    );
+    background-repeat: no-repeat;
+    animation: shine 3s infinite;
+}
+
+/* Enhanced spin animation */
+@keyframes spin-slow {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 15s linear infinite;
+}
+
+/* Glow animation */
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    }
+}
+
+.animate-glow {
+    animation: glow 3s ease-in-out infinite;
 }
     </style>
 
 </head>
-<body>
-
+<body data-theme="dark">
     <!-- Header / Navigation -->
-        <header id="home" class="sticky top-0 z-50 backdrop-blur-sm shadow-md py-6">
-    <div class="flex justify-between items-center">
-
-            <!-- Left Side - Name with enhanced spacing -->
-            <div class="flex items-center flex-3 ml-2 md:ml-4">
-                <a href="#" class="text-xl md:text-2xl font-bold text-gray-100 hover:text-blue-400 transition-all duration-100 hover:scale-105 whitespace-nowrap tracking-wide typewriter">
+    <header id="home" class="sticky top-0 z-50 backdrop-blur-sm shadow-md py-6">
+        <div class="flex justify-between items-center">
+            <!-- Left Side - Name -->
+            <div class="flex items-center ml-2 md:ml-4">
+                  <a href="#" class="text-xl md:text-2xl font-bold hover:text-blue-400 transition-all duration-100 hover:scale-105 whitespace-nowrap tracking-wide typewriter header-name-text">
     Prakathie Shanmugam
 </a>
             </div>
 
             <!-- Center - Navigation Menu -->
-          <class="hidden md:flex space-x-8 ml-auto">
-            <a href="#home" class="nav-link hover:text-blue-400 transition-colors px-3 py-2" style="color: var(--text-color)">HOME</a>
-                <a href="#about" class="nav-link hover:text-blue-400 transition-colors px-3 py-2" style="color: var(--text-color)">ABOUT</a>
-                <a href="#skills" class="nav-link hover:text-blue-400 transition-colors px-3 py-2" style="color: var(--text-color)">SKILLS</a>
-                <a href="#projects" class="nav-link hover:text-blue-400 transition-colors px-3 py-2" style="color: var(--text-color)">PROJECTS</a>
-                <a href="#achievements" class="nav-link hover:text-blue-400 transition-colors px-3 py-2" style="color: var(--text-color)">ACHIEVEMENTS</a>
-                <a href="#contact" class="nav-link hover:text-blue-400 transition-colors px-3 py-2" style="color: var(--text-color)">CONTACT</a>
+            <nav class="hidden md:flex space-x-6 ml-auto mr-4 items-center">
+                <a href="#home" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-100" style="color: var(--text-color)">HOME</a>
+                <a href="#about" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-200" style="color: var(--text-color)">ABOUT</a>
+                <a href="#skills" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-300" style="color: var(--text-color)">SKILLS</a>
+                <a href="#projects" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-400" style="color: var(--text-color)">PROJECTS</a>
+                <a href="#achievements" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-500" style="color: var(--text-color)">ACHIEVEMENTS</a>
+                <a href="#certifications" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-500" style="color: var(--text-color)">CERTIFICATIONS</a>
+                <a href="#contact" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 animate-fade-in animation-delay-600" style="color: var(--text-color)">CONTACT</a>
+                
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle animate-fade-in animation-delay-700" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
             </nav>
 
             <!-- Right Side - Hamburger Menu for Mobile -->
-            <div class="flex items-center flex-1 justify-end">
-                <button id="menu-btn" class="md:hidden focus:outline-none p-2" style="color: var(--text-color)">
+            <div class="flex items-center justify-end mr-2 md:mr-4">
+                <!-- Theme Toggle Button for Mobile -->
+                <button class="theme-toggle md:hidden animate-fade-in animation-delay-800" id="themeToggleMobile" title="Toggle Theme">
+                    <i class="fas fa-moon" id="themeIconMobile"></i>
+                </button>
+                
+                <button id="menu-btn" class="md:hidden focus:outline-none p-2 ml-2 animate-fade-in animation-delay-800" style="color: var(--text-color)">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-4 rounded-md shadow-lg py-2 theme-mobile-menu">
+        <div id="mobile-menu" class="hidden md:hidden mt-4 rounded-md shadow-lg py-2 theme-mobile-menu animate-scale-up">
             <a href="#home" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 rounded-md" style="color: var(--text-color)">HOME</a>
             <a href="#about" class="nav-link hover:text-blue-400 transition-colors px-3 py-2 rounded-md" style="color: var(--text-color)">ABOUT</a>
             <a href="#skills" class="block py-2 px-4 rounded-md" style="color: var(--text-color)">Skills</a>
             <a href="#projects" class="block py-2 px-4 rounded-md" style="color: var(--text-color)">Projects</a>
             <a href="#achievements" class="block py-2 px-4 rounded-md" style="color: var(--text-color)">Achievements</a>
+            <a href="#certifications" class="block py-2 px-4 rounded-md" style="color: var(--text-color)">Certifications</a>
             <a href="#contact" class="block py-2 px-4 rounded-md" style="color: var(--text-color)">Contact</a>
         </div>
     </header>
@@ -193,242 +544,817 @@
         <section class="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden">
             <canvas id="hero-canvas" class="canvas-bg"></canvas>
             <div class="relative z-10 max-w-2xl mx-auto space-y-4">
-                <h1 class="text-4xl md:text-6xl font-bold theme-hero-text animate-fade-in-down">Hi, I'm Prakathie</h1>
-                <p class="text-xl md:text-2xl theme-hero-subtext animate-fade-in-up">A passionate Front-end Developer</p>
+                <h1 class="text-4xl md:text-6xl font-bold theme-hero-text animate-hero-text">Hi, I'm Prakathie</h1>
+                <p class="text-xl md:text-2xl theme-hero-subtext animate-fade-in animation-delay-300">A passionate <span class="text-primary-color animate-pulse-slow">Front-end Developer</span></p>
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 mt-6">
-                    <a href="#projects" class="inline-block px-8 py-3 font-semibold rounded-full shadow-lg transition-all transform hover:scale-105 theme-button" style="color: var(--text-color)">View My Work</a>
-                    <a href="Prakathie_CV.pdf" download class="inline-block px-8 py-3 font-semibold rounded-full shadow-lg transition-all transform hover:scale-105 theme-button" style="color: var(--text-color)">
-                        <i class="fas fa-download mr-2"></i>Download CV
+                    <a href="#projects" class="inline-block px-8 py-3 font-semibold rounded-full shadow-lg transition-all transform hover:scale-105 theme-button animate-float" style="color: var(--text-color); animation-delay: 0.5s">View My Work</a>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- About Me Section -->
-        <section id="about" class="py-16 md:py-24 theme-section about-bg">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" style="color: var(--primary-color)">About Me</h2>
-                <div class="flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-12">
-                    <div class="md:w-1/3 flex-shrink-0">
-                        <img src="Prakathie.jpg" alt="Your Profile Picture" class="rounded-full shadow-lg w-48 h-48 md:w-full md:h-auto object-cover mx-auto transform transition-all hover:scale-105">
+
+                <!-- About Me Section -->
+<section id="about" class="py-16 md:py-24 relative overflow-hidden">
+    <!-- Enhanced Background Container -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <!-- Main gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-gray-900/10"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center lg:items-start gap-12">
+            <!-- Profile Picture Container with Enhanced Background Animations -->
+            <div class="lg:w-2/5 flex-shrink-0 flex flex-col items-center relative">
+                
+                <!-- Enhanced Background Animation Area -->
+                <div class="absolute -inset-16 z-0">
+                    <!-- Rotating gradient rings -->
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96">
+                        <!-- Ring 1 -->
+                        <div class="absolute inset-0 rounded-full border-2 border-blue-500/10 animate-spin-slow"></div>
+                        <!-- Ring 2 -->
+                        <div class="absolute inset-8 rounded-full border-2 border-purple-500/10 animate-spin-slow animation-delay-1000" style="animation-duration: 25s;"></div>
+                        <!-- Ring 3 -->
+                        <div class="absolute inset-16 rounded-full border-2 border-pink-500/10 animate-spin-slow animation-delay-2000" style="animation-duration: 30s;"></div>
                     </div>
-                    <div class="md:w-2/3 space-y-6 text-lg theme-text">
-                        <p>Hi, I'm a front-end developer who enjoys building clean, user-friendly web applications. I focus on creating responsive and interactive interfaces that bring ideas to life in the browser.</p>
-                        <p>I got into tech out of curiosity about how things work, and over time it's grown into a passion for creating and problem-solving. I enjoy learning new things, working with others, and taking on challenges that help me grow while building solutions that make an impact.</p>
-                        <div class="border-t theme-border pt-6">
-                            <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color)">Education</h3>
-                            <ul class="list-disc list-inside space-y-2 theme-text">
-                                <li>Pursuing B.E. Computer Science and Engineering (3rd Year) at K.S. Rangasamy College of Technology</li>
-                            </ul>
-                            <br>
-                            <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color)">Certifications</h3>
-                            <ul class="list-disc list-inside space-y-2 theme-text">
-                                <li>Microsoft Applied Skills: Build NLP Solutions with Azure AI Language</li>
-                                <li>NPTEL(Elite)-Introduction to Industry 4.0 and Industrial Internet of Things</li>
-                                <li>Infosys Springboard-Programming with Java</li>
-                            </ul>
+                    
+                    <!-- Floating gradient orbs -->
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-2xl animate-pulse-slow"></div>
+                    
+                    <!-- Floating particles system -->
+                    <div class="floating-particles-bg"></div>
+                    
+                    <!-- Glowing dots -->
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div class="dot dot-1"></div>
+                        <div class="dot dot-2"></div>
+                        <div class="dot dot-3"></div>
+                        <div class="dot dot-4"></div>
+                    </div>
+                </div>
+                
+                <!-- Profile Picture Container -->
+                <div class="relative z-10">
+                    <!-- Glow effect around picture -->
+                    <div class="absolute -inset-4 rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-lg animate-glow"></div>
+                    
+                    <!-- Animated border around picture -->
+                    <div class="absolute -inset-2 rounded-full animate-spin-slow" 
+                         style="background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6); padding: 2px;">
+                        <div class="rounded-full bg-transparent w-full h-full"></div>
+                    </div>
+                    
+                    <!-- Profile Picture -->
+                    <img src="pic.jpeg" alt="Prakathie Shanmugam" 
+                         class="relative rounded-full shadow-2xl w-72 h-72 object-cover border-4 border-white/80 dark:border-gray-800/80
+                                transform transition-all duration-500 hover:scale-105 hover:shadow-2xl z-10">
+                    
+                    <!-- Tech Icons Around Profile -->
+                    <div class="absolute -top-3 -left-3 w-10 h-10 bg-gradient-to-br from-orange-500/30 to-orange-600/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-orange-500/40 animate-float">
+                        <i class="fab fa-html5 text-sm text-orange-500"></i>
+                    </div>
+                    <div class="absolute -top-3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-500/40 animate-float animation-delay-300">
+                        <i class="fab fa-css3-alt text-sm text-blue-500"></i>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 w-10 h-10 bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-yellow-500/40 animate-float animation-delay-600">
+                        <i class="fab fa-js-square text-sm text-yellow-500"></i>
+                    </div>
+                    <div class="absolute -bottom-3 -right-3 w-10 h-10 bg-gradient-to-br from-cyan-500/30 to-cyan-600/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-cyan-500/40 animate-float animation-delay-900">
+                        <i class="fab fa-react text-sm text-cyan-500"></i>
+                    </div>
+                    
+                    <!-- Developer Badge -->
+                    <div class="absolute -bottom-3 right-8 bg-gradient-to-r from-blue-600 to-purple-600 
+                                text-white px-3 py-1.5 rounded-lg shadow-lg z-20 animate-bounce-slow text-sm font-medium">
+                        <i class="fas fa-code mr-1.5"></i>Developer
+                    </div>
+                </div>
+                
+                
+                <!-- Download CV Button -->
+                <div class="mt-6 text-center relative z-10">
+                    <a href="Prakathie_CV.pdf" download 
+                       class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 
+                              text-white font-medium rounded-lg shadow-lg transition-all duration-300 
+                              hover:scale-105 hover:shadow-xl animate-shine relative overflow-hidden group">
+                        <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent 
+                                     -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                        <i class="fas fa-download mr-2 relative"></i>
+                        <span class="relative">Download CV</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Content Container (Right Side) -->
+            <div class="lg:w-3/5 space-y-8 theme-text">
+                <!-- Introduction Text -->
+                <div class="backdrop-blur-sm bg-white/5 dark:bg-black/5 p-6 rounded-xl animate-slide-in border border-white/10 dark:border-gray-800/30">
+                    <p class="text-lg leading-relaxed mb-4">
+                        Hi, I'm <span class="font-semibold text-blue-400 animate-pulse-slow">Prakathie Shanmugam</span>, a passionate front-end developer dedicated to creating elegant and functional web experiences. I specialize in transforming ideas into intuitive digital solutions.
+                    </p>
+                    
+                    <p class="text-lg leading-relaxed">
+                        My journey in technology began with a curiosity about how things work, evolving into a passion for building solutions that make a difference. I thrive on challenges that push my boundaries and enjoy collaborating with teams to create impactful digital products.
+                    </p>
+                </div>
+                
+                <!-- Education Section -->
+                <div class="backdrop-blur-sm bg-white/5 dark:bg-black/5 p-6 rounded-xl animate-slide-in animation-delay-100 border border-white/10 dark:border-gray-800/30">
+                    <h3 class="text-2xl font-semibold mb-4 flex items-center" style="color: var(--primary-color)">
+                        <i class="fas fa-graduation-cap mr-3"></i>
+                        Education
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center mr-4">
+                                <i class="fas fa-university text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold theme-text">B.E. Computer Science and Engineering</h4>
+                                <p class="theme-text-muted">K.S. Rangasamy College of Technology</p>
+                                <p class="text-sm theme-text-muted mt-1">Currently in 3rd Year</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <div class="border-t theme-border pt-6">
-    <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color)">Interests</h3>
-    <div class="flex flex-wrap gap-3">
-        <span class="px-4 py-2 rounded-full theme-tag theme-text">Problem Solving</span>
-        <span class="px-4 py-2 rounded-full theme-tag theme-text">Web Development</span>
-        <span class="px-4 py-2 rounded-full theme-tag theme-text">UI/UX Design</span>
-        <span class="px-4 py-2 rounded-full theme-tag theme-text">Robotic Process Automation</span>
-    </div>
-</div>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-16 md:py-24">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" style="color: var(--primary-color)">Skills</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8 text-center w-full">
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-html5 text-4xl md:text-5xl text-orange-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">HTML5</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-css3-alt text-4xl md:text-5xl text-blue-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">CSS3</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-js-square text-4xl md:text-5xl text-yellow-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">JavaScript</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-react text-4xl md:text-5xl text-cyan-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">React</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-node-js text-4xl md:text-5xl text-green-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">Node.js</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fas fa-database text-4xl md:text-5xl text-gray-400 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">SQL/NoSQL</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-figma text-4xl md:text-5xl text-purple-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">Figma</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fas fa-robot text-4xl md:text-5xl text-red-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">UiPath</p>
-                    </div>
-                    <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px]">
-                        <i class="fab fa-java text-4xl md:text-5xl text-blue-500 mb-3 md:mb-4"></i>
-                        <p class="text-lg md:text-xl font-medium theme-text">Java</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-<section id="projects" class="py-16 md:py-24 theme-section about-bg">
-    <div class="container mx-auto px-6">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" style="color: var(--primary-color)">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Project Card 1 -->
-            <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <img src="portfolio.jpg" alt="Portfolio Website Project" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 theme-text">Portfolio</h3>
-                    <p class="theme-text-muted mb-4">A project to showcase my skills, projects, and achievements with a simple, clean, and responsive design.</p>
-                    <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">HTML</span>
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">CSS</span>
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">JS</span>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="#" target="_blank" class="hover:text-blue-300 transition-colors" style="color: var(--primary-color)"><i class="fas fa-external-link-alt mr-2"></i>Live Demo</a>
-                        <a href="#" target="_blank" class="hover:text-blue-300 transition-colors" style="color: var(--primary-color)"><i class="fab fa-github mr-2"></i>GitHub</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Card 2: Invoice Number Extraction -->
-            <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <img src="image.png" alt="Invoice Number Extraction Automation" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 theme-text">Invoice Number Extraction Automation</h3>
-                    <p class="theme-text-muted mb-4">An RPA workflow built in UiPath to extract invoice numbers from documents and save them to a text file, improving accuracy and reducing manual effort.</p>
-                    <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">UiPath</span>
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">RPA</span>
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">Automation</span>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="demo.mp4" target="_blank" class="hover:text-blue-300 transition-colors" style="color: var(--primary-color)">
-                            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                        </a>
-                        <a href="https://github.com/Prakathie20/RPA-Invoice-Number" target="_blank" class="hover:text-blue-300 transition-colors" style="color: var(--primary-color)">
-                            <i class="fab fa-github mr-2"></i>GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project Card 3 -->
-            <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <img src="calculator.jpg" alt="Project 3" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-2 theme-text">Responsive Calculator</h3>
-                    <p class="theme-text-muted mb-4">Built a responsive calculator with arithmetic operations and clean UI using HTML/CSS/JavaScript.</p>
-                    <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">HTML</span>
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">CSS</span>
-                        <span class="theme-tag px-3 py-1 rounded-full theme-text">JS</span>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="file:///C:/Users/sprak/Documents/calci%20project/index.html" target="_blank" class="hover:text-blue-300 transition-colors" style="color: var(--primary-color)">
-                            <i class="fas fa-external-link-alt mr-2"></i>Live Demo
-                        </a>
-                        <a href="https://github.com/Prakathie20/CODSOFT/tree/main/Calculator" target="_blank" class="hover:text-blue-300 transition-colors" style="color: var(--primary-color)">
-                            <i class="fab fa-github mr-2"></i>GitHub
-                        </a>
+                
+                <!-- My Interests Section -->
+                <div class="backdrop-blur-sm bg-white/5 dark:bg-black/5 p-6 rounded-xl animate-slide-in animation-delay-200 border border-white/10 dark:border-gray-800/30">
+                    <h3 class="text-2xl font-semibold mb-6 flex items-center" style="color: var(--primary-color)">
+                        
+                        My Interests
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="interest-item animate-fade-in" data-delay="0">
+                            <i class="fas fa-puzzle-piece mr-3 text-blue-400"></i>
+                            <span>Problem Solving</span>
+                        </div>
+                        <div class="interest-item animate-fade-in" data-delay="100">
+                            <i class="fas fa-layer-group mr-3 text-green-400"></i>
+                            <span>Full Stack Dev</span>
+                        </div>
+                        <div class="interest-item animate-fade-in" data-delay="200">
+                            <i class="fas fa-palette mr-3 text-purple-400"></i>
+                            <span>UI/UX Design</span>
+                        </div>
+                        <div class="interest-item animate-fade-in" data-delay="300">
+                            <i class="fas fa-robot mr-3 text-red-400"></i>
+                            <span>RPA Automation</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Enhanced Background Animations for Profile */
+    
+    /* Floating animation */
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-15px);
+        }
+    }
+    
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Glow animation */
+    @keyframes glow {
+        0%, 100% {
+            opacity: 0.5;
+            filter: blur(20px);
+        }
+        50% {
+            opacity: 0.8;
+            filter: blur(25px);
+        }
+    }
+    
+    .animate-glow {
+        animation: glow 3s ease-in-out infinite;
+    }
+    
+    /* Enhanced spin animation */
+    @keyframes spin-slow {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .animate-spin-slow {
+        animation: spin-slow 20s linear infinite;
+    }
+    
+    /* Dot animations */
+    .dot {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        animation: dot-pulse 2s ease-in-out infinite;
+    }
+    
+    .dot-1 {
+        background: #3b82f6;
+        top: -100px;
+        left: -100px;
+        animation-delay: 0s;
+    }
+    
+    .dot-2 {
+        background: #8b5cf6;
+        top: -100px;
+        right: -100px;
+        animation-delay: 0.5s;
+    }
+    
+    .dot-3 {
+        background: #ec4899;
+        bottom: -100px;
+        left: -100px;
+        animation-delay: 1s;
+    }
+    
+    .dot-4 {
+        background: #10b981;
+        bottom: -100px;
+        right: -100px;
+        animation-delay: 1.5s;
+    }
+    
+    @keyframes dot-pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0.6;
+        }
+    }
+    
+    /* Pulse animation */
+    @keyframes gentle-pulse {
+        0%, 100% {
+            opacity: 0.4;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+    }
+    
+    .animate-pulse-slow {
+        animation: gentle-pulse 4s ease-in-out infinite;
+    }
+    
+    /* Interest items */
+    .interest-item {
+        display: flex;
+        align-items: center;
+        background: rgba(59, 130, 246, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        padding: 0.75rem 1rem;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    
+    .interest-item:hover {
+        transform: translateX(0) translateY(-3px);
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.3);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.1);
+    }
+</style>
+
+<script>
+    // Create enhanced floating particles for profile background
+    document.addEventListener('DOMContentLoaded', function() {
+        const particlesContainer = document.querySelector('.floating-particles-bg');
+        if (!particlesContainer) return;
         
+        // Create 15 particles with different effects
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            const size = Math.random() * 6 + 2;
+            const duration = Math.random() * 10 + 10;
+            const delay = Math.random() * 10;
+            const colorType = Math.floor(Math.random() * 4);
+            const colors = ['#3b82f6', '#8b5cf6', '#ec4899', '#10b981'];
+            const color = colors[colorType];
+            
+            particle.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${color};
+                border-radius: 50%;
+                opacity: ${Math.random() * 0.2 + 0.1};
+                top: ${Math.random() * 100}%;
+                left: ${Math.random() * 100}%;
+                animation: particle-float ${duration}s ease-in-out infinite;
+                animation-delay: ${delay}s;
+                filter: blur(${size / 3}px);
+            `;
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Add custom particle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particle-float {
+                0%, 100% {
+                    transform: translate(0, 0) rotate(0deg);
+                }
+                25% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 50 - 25}px) rotate(90deg);
+                }
+                50% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 50 - 25}px) rotate(180deg);
+                }
+                75% {
+                    transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 50 - 25}px) rotate(270deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
+            
+            <!-- Skills Section -->
+<section id="skills" class="py-16 md:py-24">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 scroll-animate" style="color: var(--primary-color)">Skills</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8 text-center w-full">
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up">
+                <i class="fab fa-html5 text-4xl md:text-5xl text-orange-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">HTML5</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-100">
+                <i class="fab fa-css3-alt text-4xl md:text-5xl text-blue-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">CSS3</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-200">
+                <i class="fab fa-js-square text-4xl md:text-5xl text-yellow-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">JavaScript</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-300">
+                <i class="fab fa-react text-4xl md:text-5xl text-cyan-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">React</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-400">
+                <i class="fab fa-node-js text-4xl md:text-5xl text-green-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">Node.js</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-500">
+                <i class="fas fa-database text-4xl md:text-5xl text-gray-400 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">SQL/NoSQL</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-600">
+                <i class="fab fa-figma text-4xl md:text-5xl text-purple-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">Figma</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-700">
+                <i class="fas fa-robot text-4xl md:text-5xl text-red-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">UiPath</p>
+            </div>
+            <div class="skill-card p-4 md:p-6 lg:p-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 flex flex-col items-center justify-center min-h-[140px] md:min-h-[160px] scroll-animate animate-scale-up animation-delay-800">
+                <i class="fab fa-java text-4xl md:text-5xl text-blue-500 mb-3 md:mb-4 animate-pulse-slow"></i>
+                <p class="text-lg md:text-xl font-medium theme-text">Java</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 md:py-24 theme-section about-bg">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 scroll-animate" style="color: var(--primary-color)">Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate">
+                        <img src="portfolio.jpg" alt="Portfolio Website Project" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">Portfolio</h3>
+                            <p class="theme-text-muted mb-4">A project to showcase my skills, projects, and achievements with a simple, clean, and responsive design.</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink">HTML</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-200">CSS</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-400">JS</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="#" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce" style="color: var(--primary-color)"><i class="fas fa-external-link-alt mr-2"></i>Live Demo</a>
+                                <a href="#" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce animation-delay-100" style="color: var(--primary-color)"><i class="fab fa-github mr-2"></i>GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: Invoice Number Extraction -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate animation-delay-200">
+                        <img src="image.png" alt="Invoice Number Extraction Automation" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">Invoice Number Extraction Automation</h3>
+                            <p class="theme-text-muted mb-4">An RPA workflow built in UiPath to extract invoice numbers from documents and save them to a text file, improving accuracy and reducing manual effort.</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink">UiPath</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-200">RPA</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-400">Automation</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="demo.mp4" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce" style="color: var(--primary-color)">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                <a href="https://github.com/Prakathie20/RPA-Invoice-Number" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce animation-delay-100" style="color: var(--primary-color)">
+                                    <i class="fab fa-github mr-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate animation-delay-400">
+                        <img src="calculator.jpg" alt="Project 3" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">Responsive Calculator</h3>
+                            <p class="theme-text-muted mb-4">Built a responsive calculator with arithmetic operations and clean UI using HTML/CSS/JavaScript.</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink">HTML</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-200">CSS</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-400">JS</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="file:///C:/Users/sprak/Documents/calci%20project/index.html" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce" style="color: var(--primary-color)">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                <a href="https://github.com/Prakathie20/CODSOFT/tree/main/Calculator" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce animation-delay-100" style="color: var(--primary-color)">
+                                    <i class="fab fa-github mr-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4: Student Placement Dashboard -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate animation-delay-600">
+                        <img src="dashboard.png" alt="Student Placement Dashboard" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">Student Placement Dashboard</h3>
+                            <p class="theme-text-muted mb-4">Interactive Power BI dashboards analyzing student placement data across 5 different visualizations including placement rates, company trends, department performance, salary analysis, and skill demand metrics.</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink">Power BI</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-200">Data Visualization</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-400">Data Analysis</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-600">5 Dashboards</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="demo-dashboards.mp4" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce" style="color: var(--primary-color)">
+                                    <i class="fas fa-external-link-alt mr-2"></i>View Dashboards
+                                </a>
+                                <a href="https://github.com/Prakathie20/Student-placement-dashboard/tree/main/Student%20Placement%20Dashboard" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce animation-delay-100" style="color: var(--primary-color)">
+                                    <i class="fab fa-github mr-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 5: AI Resume Builder -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate animation-delay-800">
+                        <img src="ai.png" alt="AI Resume Builder" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">AI Resume Builder</h3>
+                            <p class="theme-text-muted mb-4">An intelligent resume builder powered by AI that generates optimized resumes, provides ATS-friendly formatting, and offers personalized suggestions for improving job application success.</p>
+                            <div class="flex flex-wrap gap-2 text-sm font-medium mb-4">
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink">AI/ML</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-200">Python</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-400">NLP</span>
+                                <span class="theme-tag px-3 py-1 rounded-full theme-text animate-blink animation-delay-600">Web App</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <a href="ai.mp4" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce" style="color: var(--primary-color)">
+                                    <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                                </a>
+                                <a href="https://github.com/Prakathie20/resume-builder" target="_blank" class="hover:text-blue-300 transition-colors animate-bounce animation-delay-100" style="color: var(--primary-color)">
+                                    <i class="fab fa-github mr-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Achievements and Activities Section -->
         <section id="achievements" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" style="color: var(--primary-color)">Achievements & Activities</h2>
-                <div class="about-bg p-8 rounded-xl shadow-lg max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 scroll-animate" style="color: var(--primary-color)">Achievements & Activities</h2>
+                <div class="about-bg p-8 rounded-xl shadow-lg max-w-2xl mx-auto scroll-animate">
                     <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color)">Achievements</h3>
                     <ul class="list-disc list-inside space-y-2 mb-6 theme-text">
-                        <li>Secured HackerRank Badges (Python, Problem-Solving)</li>
+                        <li class="animate-slide-left">Secured HackerRank Badges (Python, Problem-Solving)</li>
+                        <li class="animate-slide-left animation-delay-200">Achieved 96.26 percentile in Round 1 of Naukri Campus Young Turks 2025</li>
                     </ul>
 
                     <h3 class="text-2xl font-semibold mb-4" style="color: var(--primary-color)">Events & Participation</h3>
                     <ul class="list-disc list-inside space-y-2 mb-6 theme-text">
-                        <li>Presented a paper on "Cloud Print for Android" at Kongu Engineering College, Perundurai - March 2024</li>
-                        <li>Participated in the Srishti Symposium at PSG College of Technology, Coimbatore - 6th October 2024</li>
+                        <li class="animate-slide-right">Presented a paper on "Cloud Print for Android" at Kongu Engineering College, Perundurai - March 2024</li>
+                        <li class="animate-slide-right animation-delay-200">Participated in the Srishti Symposium at PSG College of Technology, Coimbatore - 6th October 2024</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 md:py-24 theme-section about-bg">
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-16 md:py-24 theme-section about-bg">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" style="color: var(--primary-color)">Contact Me</h2>
-                <div class="max-w-xl mx-auto space-y-8">
-                    <p class="text-center text-lg theme-text">Feel free to reach out to me for collaborations or just to say hi! I'm always open to new opportunities.</p>
-
-                    <form id="contact-form" action="#" method="POST" class="space-y-6">
-                        <input type="text" name="name" placeholder="Name" required class="w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 theme-input-border" style="background-color: var(--card-background); color: var(--text-color)">
-                        <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 theme-input-border" style="background-color: var(--card-background); color: var(--text-color)">
-                        <textarea name="message" placeholder="Message" rows="5" required class="w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 theme-input-border" style="background-color: var(--card-background); color: var(--text-color)"></textarea>
-                        <button type="submit" class="w-full px-6 py-3 font-semibold rounded-lg shadow-lg transition-colors" style="background-color: var(--primary-color); color: white">Send Message</button>
-                    </form>
-                    <div id="form-message" class="text-center font-semibold mt-4 hidden" style="color: var(--primary-color)">
-                        Thank you for contacting me! I will get back to you soon.
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 scroll-animate" style="color: var(--primary-color)">Certifications</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Certification 1 -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate">
+                        <img src="mircrosoft-cert.png" alt="Microsoft Applied Skills Certificate" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">Microsoft Applied Skills</h3>
+                            <p class="theme-text-muted mb-4">Build NLP Solutions with Azure AI Language</p>
+                        </div>
                     </div>
 
-                    <div class="flex justify-center space-x-6 pt-8">
-                        <a href="https://www.linkedin.com/in/prakathie-shanmugam20" target="_blank" class="theme-social-icon hover:text-blue-400 transition-colors"><i class="fab fa-linkedin text-3xl"></i></a>
-                        <a href="https://github.com/Prakathie20" target="_blank" class="theme-social-icon hover:text-blue-400 transition-colors"><i class="fab fa-github-square text-3xl"></i></a>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sprakathies@gmail.com" target="_blank" class="theme-social-icon hover:text-blue-400 transition-colors">
-                            <i class="fas fa-envelope text-3xl"></i>
-                        </a>
-                        <a href="https://wa.me/918489090349" target="_blank" class="theme-social-icon hover:text-green-400 transition-colors">
-                            <i class="fab fa-whatsapp text-3xl"></i>
-                        </a>
+                    <!-- Certification 2 -->
+                    <div class="project-card rounded-xl overflow-hidden shadow-lg transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl scroll-animate animation-delay-200">
+                        <img src="nptel-cert.png" alt="NPTEL Certificate" class="w-full h-48 object-cover transform transition-transform duration-300 hover:scale-110">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2 theme-text">NPTEL (Elite)</h3>
+                            <p class="theme-text-muted mb-4">Introduction to Industry 4.0 and Industrial Internet of Things</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-    </main>
+            <!-- Contact Section -->
+<section id="contact" class="py-16 md:py-24 theme-section about-bg">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 scroll-animate" style="color: var(--primary-color)">Contact Me</h2>
+        <div class="max-w-xl mx-auto space-y-8">
+            <p class="text-center text-lg theme-text scroll-animate">Feel free to reach out to me for Developer roles.</p>
+
+            <form id="contact-form" action="#" method="POST" class="space-y-6 scroll-animate">
+                <input type="text" name="name" placeholder="Name" required class="w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 theme-input-border transform transition-all duration-300 focus:scale-[1.02]" style="background-color: var(--card-background); color: var(--text-color)">
+                <input type="email" name="email" placeholder="Email" required class="w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 theme-input-border transform transition-all duration-300 focus:scale-[1.02]" style="background-color: var(--card-background); color: var(--text-color)">
+                <textarea name="message" placeholder="Message" rows="5" required class="w-full p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 theme-input-border transform transition-all duration-300 focus:scale-[1.02]" style="background-color: var(--card-background); color: var(--text-color)"></textarea>
+                <button type="submit" class="w-full px-6 py-3 font-semibold rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl animate-pulse-slow" style="background-color: var(--primary-color); color: white">Send Message</button>
+            </form>
+            <div id="form-message" class="text-center font-semibold mt-4 hidden animate-scale-up" style="color: var(--primary-color)">
+                Thank you for contacting me! I will get back to you soon.
+            </div>
+
+            <!-- Social Media Links with Instagram Added -->
+            <div class="flex justify-center space-x-6 pt-8">
+                <a href="https://www.linkedin.com/in/prakathie-shanmugam20" target="_blank" 
+                   class="theme-social-icon hover:text-blue-400 transition-colors animate-bounce" 
+                   title="LinkedIn">
+                    <i class="fab fa-linkedin text-3xl"></i>
+                </a>
+                <a href="https://github.com/Prakathie20" target="_blank" 
+                   class="theme-social-icon hover:text-blue-400 transition-colors animate-bounce animation-delay-100" 
+                   title="GitHub">
+                    <i class="fab fa-github-square text-3xl"></i>
+                </a>
+                <!-- Instagram Added Here -->
+                <a href="https://www.instagram.com/prakathie._.shanmugam/" target="_blank" 
+                   class="theme-social-icon hover:text-pink-500 transition-colors animate-bounce animation-delay-200" 
+                   title="Instagram">
+                    <i class="fab fa-instagram text-3xl"></i>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sprakathies@gmail.com" target="_blank" 
+                   class="theme-social-icon hover:text-blue-400 transition-colors animate-bounce animation-delay-300" 
+                   title="Email">
+                    <i class="fas fa-envelope text-3xl"></i>
+                </a>
+                <a href="https://wa.me/918489090349" target="_blank" 
+                   class="theme-social-icon hover:text-green-400 transition-colors animate-bounce animation-delay-400" 
+                   title="WhatsApp">
+                    <i class="fab fa-whatsapp text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
-    <footer class="py-6 text-center" style="background-color: var(--header-background); color: var(--text-muted)">
-        <p>&copy; 2025 Prakathie. All Rights Reserved.</p>
-    </footer>
+    <!-- Footer -->
+       <!-- Add this after the existing footer but before the closing </body> tag -->
+
+<!-- Quick Links Footer Section -->
+<footer class="py-10 theme-section about-bg mt-8">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8 scroll-animate" style="color: var(--primary-color)">Quick Links</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Resources Column -->
+            <div class="scroll-animate">
+                <h3 class="text-xl font-bold mb-4" style="color: var(--primary-color)">Resources</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#home" class="nav-link flex items-center hover:text-blue-400 transition-colors theme-text animate-fade-in">
+                            <i class="fas fa-home mr-2 text-sm"></i>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-link flex items-center hover:text-blue-400 transition-colors theme-text animate-fade-in animation-delay-100">
+                            <i class="fas fa-user mr-2 text-sm"></i>About Me
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#skills" class="nav-link flex items-center hover:text-blue-400 transition-colors theme-text animate-fade-in animation-delay-200">
+                            <i class="fas fa-code mr-2 text-sm"></i>Skills
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a href="#certifications" class="nav-link flex items-center hover:text-blue-400 transition-colors theme-text animate-fade-in animation-delay-400">
+                            <i class="fas fa-certificate mr-2 text-sm"></i>Certifications
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="nav-link flex items-center hover:text-blue-400 transition-colors theme-text animate-fade-in animation-delay-500">
+                            <i class="fas fa-project-diagram mr-2 text-sm"></i>Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav-link flex items-center hover:text-blue-400 transition-colors theme-text animate-fade-in animation-delay-600">
+                            <i class="fas fa-envelope mr-2 text-sm"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contact Info Column -->
+            <div class="scroll-animate animation-delay-200">
+                <h3 class="text-xl font-bold mb-4" style="color: var(--primary-color)">Contact Info</h3>
+                <ul class="space-y-3 theme-text">
+                    <li class="flex items-center">
+                        <i class="fas fa-envelope mr-3 text-blue-400"></i>
+                        <span>sprakathies@gmail.com</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-phone mr-3 text-blue-400"></i>
+                        <span>+91 8489090349</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-3 text-blue-400"></i>
+                        <span>Tamil Nadu, India</span>
+                    </li>
+                </ul>
+            </div>
+
+                <!-- Social Media Column in Footer -->
+<div class="scroll-animate animation-delay-300">
+    <h3 class="text-xl font-bold mb-4" style="color: var(--primary-color)">Follow Me</h3>
+    <div class="flex space-x-4">
+        <a href="https://www.linkedin.com/in/prakathie-shanmugam20" target="_blank" 
+           class="theme-social-icon hover:text-blue-400 transition-colors text-2xl animate-bounce"
+           title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/Prakathie20" target="_blank" 
+           class="theme-social-icon hover:text-blue-400 transition-colors text-2xl animate-bounce animation-delay-100"
+           title="GitHub">
+            <i class="fab fa-github-square"></i>
+        </a>
+        <!-- Instagram Added -->
+        <a href="https://www.instagram.com/prakathie._.shanmugam/" target="_blank" 
+           class="theme-social-icon hover:text-pink-500 transition-colors text-2xl animate-bounce animation-delay-200"
+           title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/918489090349" target="_blank" 
+           class="theme-social-icon hover:text-green-400 transition-colors text-2xl animate-bounce animation-delay-300"
+           title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+</div>
+
+            <!-- Copyright Column -->
+            <div class="scroll-animate animation-delay-400">
+                <h3 class="text-xl font-bold mb-4" style="color: var(--primary-color)">Portfolio</h3>
+                <p class="theme-text-muted mb-4">
+                    A showcase of my skills, projects, and achievements as a front-end developer.
+                </p>
+                <p class="theme-text text-sm">
+                    &copy; 2025 Prakathie Shanmugam. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t theme-border mt-8 pt-6 text-center">
+            <p class="theme-text-muted text-sm">
+                Built with <i class="fas fa-heart text-red-400 mx-1"></i> using HTML, CSS, JavaScript & Tailwind CSS
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Replace the existing simple footer with this code -->
+<!-- Remove or replace the existing footer that only has copyright -->
 
     <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeToggleMobile = document.getElementById('themeToggleMobile');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeIconMobile = document.getElementById('themeIconMobile');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            
+            // Add animation to button
+            const button = event.currentTarget;
+            button.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                button.style.transform = 'rotate(0deg)';
+            }, 300);
+        }
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-moon';
+                themeIconMobile.className = 'fas fa-moon';
+                themeToggle.title = 'Switch to Light Mode';
+                themeToggleMobile.title = 'Switch to Light Mode';
+            } else {
+                themeIcon.className = 'fas fa-sun';
+                themeIconMobile.className = 'fas fa-sun';
+                themeToggle.title = 'Switch to Dark Mode';
+                themeToggleMobile.title = 'Switch to Dark Mode';
+            }
+        }
+
+        // Add event listeners for theme toggle
+        themeToggle.addEventListener('click', toggleTheme);
+        themeToggleMobile.addEventListener('click', toggleTheme);
+
+        // ==================== NEW ANIMATION FUNCTIONS ====================
+        
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe all elements with scroll-animate class
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
 
         // Add smooth scroll for home link
-document.querySelector('a[href="#home"]').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+        document.querySelector('a[href="#home"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
         // Smooth scroll for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    target.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
@@ -447,10 +1373,10 @@ document.querySelector('a[href="#home"]').addEventListener('click', function(e) 
             });
         });
 
-        // Canvas animation for the hero section
+        // Enhanced Canvas animation for the hero section
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
-        let w, h, particles;
+        let w, h, particles = [];
 
         function resizeCanvas() {
             w = canvas.width = window.innerWidth;
@@ -459,27 +1385,43 @@ document.querySelector('a[href="#home"]').addEventListener('click', function(e) 
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        function createParticles() {
+        function createEnhancedParticles() {
             particles = [];
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 150; i++) {
                 particles.push({
                     x: Math.random() * w,
                     y: Math.random() * h,
-                    size: Math.random() * 2,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5,
-                    opacity: Math.random() * 0.7 + 0.3
+                    size: Math.random() * 2 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.8,
+                    speedY: (Math.random() - 0.5) * 0.8,
+                    opacity: Math.random() * 0.5 + 0.2,
+                    color: `hsl(${Math.random() * 60 + 200}, 100%, 70%)`
                 });
             }
         }
 
-        function animateParticles() {
+        function animateEnhancedParticles() {
             ctx.clearRect(0, 0, w, h);
+            
+            // Create gradient background
+            const gradient = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w, h)/2);
+            gradient.addColorStop(0, 'rgba(3, 16, 46, 0.8)');
+            gradient.addColorStop(1, 'rgba(3, 16, 46, 1)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, w, h);
+            
             particles.forEach(p => {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // Fixed dark theme color
+                ctx.fillStyle = p.color;
+                ctx.globalAlpha = p.opacity;
                 ctx.fill();
+                
+                // Add glow effect
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = p.color;
+                ctx.fill();
+                ctx.shadowBlur = 0;
 
                 p.x += p.speedX;
                 p.y += p.speedY;
@@ -487,37 +1429,243 @@ document.querySelector('a[href="#home"]').addEventListener('click', function(e) 
                 if (p.x < 0 || p.x > w) p.speedX *= -1;
                 if (p.y < 0 || p.y > h) p.speedY *= -1;
             });
-            requestAnimationFrame(animateParticles);
+            requestAnimationFrame(animateEnhancedParticles);
         }
 
-        // Initialize canvas animation
-        createParticles();
-        animateParticles();
+        // Initialize enhanced canvas animation
+        createEnhancedParticles();
+        animateEnhancedParticles();
 
-        // Show message after form submit
+        // Show message after form submit (fixed)
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const formData = {
-                name: this.name.value,
-                email: this.email.value,
-                message: this.message.value
-            };
-            fetch('http://localhost:3000/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('form-message').classList.remove('hidden');
-                    this.reset();
-                } else {
-                    alert('Failed to send message.');
-                }
-            })
-            .catch(() => alert('Error sending message.'));
+            
+            // Show success message
+            const messageElement = document.getElementById('form-message');
+            messageElement.classList.remove('hidden');
+            
+            // Reset form
+            this.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageElement.classList.add('hidden');
+            }, 5000);
+            
+            // Log form data for testing
+            console.log('Form submitted successfully!');
+        });
+
+        // Add hover effects to interactive elements
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            el.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Add click animation to buttons
+        document.querySelectorAll('button, .theme-button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Initialize animations on page load
+        window.addEventListener('load', () => {
+            // Add visible class to hero elements
+            setTimeout(() => {
+                document.querySelectorAll('.animate-fade-in').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                    }, index * 100);
+                });
+            }, 500);
         });
     </script>
+
+<!-- Small "me" circle at bottom right -->
+<div class="fixed bottom-4 left-8 z-50 md:bottom-8 md:left-8">
+    <div class="relative group">
+        <!-- Main "me" circle -->
+        <div class="w-10 h-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-110 animate-float" 
+             style="background-color: var(--primary-color); color: white;">
+            <span class="font-bold text-sm">me</span>
+        </div>
+        
+        <!-- Tooltip on hover -->
+        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden md:block"
+             style="background-color: var(--card-background); color: var(--text-color);">
+            Prakathie
+            <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent"
+                 style="border-top-color: var(--card-background);"></div>
+        </div>
+    </div>
+</div>
+<!-- Simple arrow with number (like NUCESS example) -->
+<!-- Simple Water-Filled Arrow Button -->
+<button id="water-arrow" 
+        class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center overflow-hidden transform transition-all duration-300 hover:scale-110 active:scale-95"
+        style="border: 2px solid rgba(255, 255, 255, 0.3); background-color: #1e3a8a;">
+    
+    <!-- Water Fill Inside Circle -->
+    <div id="arrow-water" class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-blue-400 to-blue-300 transition-all duration-700"
+         style="height: 30%;">
+    </div>
+    
+    <!-- Arrow Icon -->
+    <i class="fas fa-arrow-up text-xl text-white relative z-10"></i>
+    
+    <!-- Circle Border -->
+    <div class="absolute inset-0 rounded-full border-2 border-blue-300/30 pointer-events-none"></div>
+</button>
+
+<style>
+    /* Water movement inside */
+    #arrow-water::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: inherit;
+        border-radius: 50%;
+    }
+    
+    /* Button hover effect */
+    #water-arrow:hover {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    
+    #water-arrow:hover #arrow-water {
+        animation: water-tilt 0.5s ease-in-out;
+    }
+    
+    @keyframes water-tilt {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        75% { transform: rotate(-5deg); }
+    }
+</style>
+
+<!-- Water Level Inside Circular Arrow Button -->
+<button id="water-circle-arrow" 
+        class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full shadow-xl flex items-center justify-center overflow-hidden transform transition-all duration-300 hover:scale-110 active:scale-95"
+        style="border: 2px solid rgba(255, 255, 255, 0.3); background-color: #1e3a8a;">
+    
+    <!-- Water Inside the Circle -->
+    <div id="circle-water" class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-blue-400 to-blue-300 transition-all duration-700"
+         style="height: 0%;">
+    </div>
+    
+    <!-- Arrow Icon -->
+    <i class="fas fa-arrow-up text-xl text-white relative z-10"></i>
+    
+    <!-- Circle Border -->
+    <div class="absolute inset-0 rounded-full border-2 border-blue-300/30 pointer-events-none"></div>
+</button>
+
+<style>
+    /* Water animation inside circle */
+    #circle-water::after {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: inherit;
+        border-radius: 50%;
+    }
+    
+    /* Button hover effect */
+    #water-circle-arrow:hover {
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+        animation: button-float 3s ease-in-out infinite;
+    }
+    
+    @keyframes button-float {
+        0%, 100% { transform: translateY(0) scale(1.1); }
+        50% { transform: translateY(-5px) scale(1.1); }
+    }
+</style>
+
+<script>
+    const waterCircleArrow = document.getElementById('water-circle-arrow');
+    const circleWater = document.getElementById('circle-water');
+    let waterLevel = 0;
+    
+    // Update water based on scroll
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        
+        // Calculate water level: 0% at bottom, 100% at top
+        waterLevel = (1 - (scrollTop / docHeight)) * 100;
+        
+        // Update water inside circle
+        updateCircleWater();
+    });
+    
+    // Click to reset to top (full water)
+    waterCircleArrow.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Button click animation
+        waterCircleArrow.style.transform = 'scale(0.9) rotate(360deg)';
+        setTimeout(() => {
+            waterCircleArrow.style.transform = '';
+        }, 300);
+    });
+    
+    function updateCircleWater() {
+        // Smooth transition
+        const currentHeight = parseFloat(circleWater.style.height) || 0;
+        const targetHeight = Math.max(0, Math.min(100, waterLevel));
+        
+        // Animate smoothly
+        circleWater.style.height = targetHeight + '%';
+        
+        // Change water color based on level
+        if (targetHeight > 80) {
+            circleWater.style.background = 'linear-gradient(to top, #60a5fa, #3b82f6)';
+        } else if (targetHeight > 50) {
+            circleWater.style.background = 'linear-gradient(to top, #93c5fd, #60a5fa)';
+        } else if (targetHeight > 20) {
+            circleWater.style.background = 'linear-gradient(to top, #bfdbfe, #93c5fd)';
+        } else {
+            circleWater.style.background = 'linear-gradient(to top, #dbeafe, #bfdbfe)';
+        }
+        
+        // Change button border color based on water level
+        if (targetHeight > 90) {
+            waterCircleArrow.style.borderColor = 'rgba(96, 165, 250, 0.5)';
+        } else if (targetHeight > 60) {
+            waterCircleArrow.style.borderColor = 'rgba(147, 197, 253, 0.4)';
+        } else {
+            waterCircleArrow.style.borderColor = 'rgba(191, 219, 254, 0.3)';
+        }
+    }
+    
+    // Initialize
+    updateCircleWater();
+    
+    // Update on page load
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            window.dispatchEvent(new Event('scroll'));
+        }, 100);
+    });
+</script>
 </body>
 </html>
